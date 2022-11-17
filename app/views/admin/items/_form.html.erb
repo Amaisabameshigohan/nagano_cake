@@ -22,11 +22,11 @@
     <%= f.radio_button :sale_method, 'stop_selling' %>
     <%= f.label :sale_method, '販売停止中' %>
   </div>
-  <div>
+  <div class="col-7">
     <% if Item.exists?(item.id) %>
-      <%= f.submit '変更を保存する' %>
+      <%= f.submit '変更を保存する', class: 'btn btn-success' %>
     <% else %>
-      <%= f.submit '新規登録' %>
+      <%= f.submit '新規登録', class: 'btn btn-success btn-block' %>
     <% end %>
   </div>
 <% end %>
