@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
+scope module: :public do
   root to: "homes#top"
   get '/about' => 'public/homes#about', as: :about
   resources :items, only: [:index, :show]
@@ -19,13 +20,16 @@ Rails.application.routes.draw do
     end
   end
   resources :orders, only: [:new, :create, :index, :show]
+
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+end
+
   post '/orders/confirm' => 'public/orders#confirm'
   get '/orders/complete' => 'public/orders#complete'
   get '/customers/information/edit' => 'public/customers#edit'
   patch '/customers/information' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw'
-  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
 
   namespace :admin do
     get '/admin' => 'admin/homes#top'
