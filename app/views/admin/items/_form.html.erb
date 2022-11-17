@@ -1,0 +1,32 @@
+<%= form_with model: [:admin, item] do |f| %>
+  <div>
+    <p>商品画像</p>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  <div>
+    <p>商品名</p>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <p>商品説明</p>
+    <%= f.text_area :introduction %>
+  </div>
+  <div>
+    <p>税抜価格</p>
+    <%= f.text_field :price %>
+  </div>
+  <div>
+    <p>販売ステータス</p>
+    <%= f.radio_button :sale_method, 'sale', {:checked => true}   %>
+    <%= f.label :sale_method, '販売中' %>
+    <%= f.radio_button :sale_method, 'stop_selling' %>
+    <%= f.label :sale_method, '販売停止中' %>
+  </div>
+  <div>
+    <% if Item.exists?(item.id) %>
+      <%= f.submit '変更を保存する' %>
+    <% else %>
+      <%= f.submit '新規登録' %>
+    <% end %>
+  </div>
+<% end %>
