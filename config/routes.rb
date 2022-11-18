@@ -30,6 +30,7 @@ end
   patch '/customers/information' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw'
+  get '/search' => 'public/searches#search'
 
   namespace :admin do
     get '/admin' => 'admin/homes#top'

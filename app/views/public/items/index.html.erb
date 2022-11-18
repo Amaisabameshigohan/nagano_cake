@@ -1,13 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <p>ジャンル検索</p>
-      <div>
-        <% @items.each do |item| %>
-          <p><%= item.genre.name %></p>
-        <% end %>
-      </div>
-    </div>
+    <%= render 'genre', items: @items %>
     <div class="">
       <h2>商品一覧</h2>
       <p>(全<%= @items.count %>件)</p>

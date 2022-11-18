@@ -1,0 +1,19 @@
+<div class="col-3">
+  <table>
+    <thead>
+      <th>
+        <tr>ジャンル検索</tr>
+      </th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <% items.each do |item| %>
+            <%= link_to item.genre.name, search_path(word: item.genre.name, model:"genre", method: "perfect") %>
+          <% end %>
+        </td>
+      </tr>
+    </tbody>
+
+  <table>
+</div>
