@@ -5,6 +5,8 @@
     </div>
   </div>
 
+  <%= form_with model: @customer, url: customer_session_path do |f| %>
+
   <table>
     <tbody>
       <tr>
@@ -18,7 +20,7 @@
         <td></td>
       </tr>
 
-  <%= form_with model: @customer, url: customer_session_path do |f| %>
+
 
       <tr>
         <td vertical-align "middle">メールアドレス</td>
