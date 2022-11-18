@@ -1,9 +1,5 @@
 <div class="container">
-  <div class="">
-    <h2>商品新規登録</h2>
-    <div class="d-flex justify-content-center">
-      <%= render 'form', item: Item.new, genres: Genre.all %>
-    </div>
-  </div>
+  <h2>商品新規登録</h2>
+  <%= render 'form', item: Item.new, genres: Genre.all %>
 </div>
 
