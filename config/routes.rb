@@ -11,9 +11,7 @@ Rails.application.routes.draw do
 
 scope module: :public do
   root to: "homes#top"
-  get '/about' => 'public/homes#about', as: :about
   resources :items, only: [:index, :show]
-  get '/customers/my_page' => 'public/customers#show'
   resources :cart_items, only: [:index, :update, :destroy, :create] do
     collection do
       delete 'destroy_all'
@@ -30,15 +28,18 @@ end
   patch '/customers/information' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'
   patch '/customers/withdraw' => 'public/customers#withdraw'
+  get '/about' => 'public/homes#about', as: :about
+  get '/customers/my_page' => 'public/customers#show'
   get '/search' => 'public/searches#search'
 
   namespace :admin do
-    get '/admin' => 'admin/homes#top'
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
   end
+
+
 
 end
