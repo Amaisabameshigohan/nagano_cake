@@ -1,5 +1,7 @@
 class Public::AddressesController < ApplicationController
 
+<<<<<<< HEAD
+=======
   def new
 
   end
@@ -24,4 +26,5 @@ class Public::AddressesController < ApplicationController
 
   end
 
+>>>>>>> origin/develop
 end
