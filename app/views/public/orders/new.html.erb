@@ -1,0 +1,36 @@
+<div class ="container">
+  <h2>注文情報入力</h2>
+  <!--<div class="d-flex justify-content-center">-->
+  <%= form_with model: @order do |f| %>
+  <div class="">
+    <div class="col-2 col-form-label font-weight-bold">
+      <%= f.label :payment_method, '支払方法' %>
+    </div>
+    <div class="col-10 form-group">
+      <%= f.radio_button :payment_method, '' %>
+      <%= f.label :payment_method, 'クレジットカード' %>
+      <%= f.radio_button :payment_method, '' %>
+      <%= f.label :payment_method, '銀行振込' %>
+    </div>
+  </div>
+  <div class="">
+    <div class="col-2 col-form-label font-weight-bold">
+      <%= f.label :payment_method, 'お届け先' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :postal_code, '郵便番号（ハイフンなし）' %>
+      <%= f.text_field :postal_code, class: 'font-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :address, '住所' %>
+      <%= f.text_field :address, class: 'font-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :name, '宛名' %>
+      <%= f.text_field :name, class: 'font-control' %>
+    </div>
+  </div>
+  <%= f.submit '確認画面へ進む', class: 'btn btn-primary' %>
+  <% end %>
+  <!--</div>-->
+</div>
