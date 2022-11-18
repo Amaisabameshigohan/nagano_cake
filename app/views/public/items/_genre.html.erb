@@ -1,19 +1,18 @@
-<div class="col-3">
-  <table>
-    <thead>
-      <th>
-        <tr>ジャンル検索</tr>
-      </th>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <% items.each do |item| %>
-            <%= link_to item.genre.name, search_path(word: item.genre.name, model:"genre", method: "perfect") %>
-          <% end %>
-        </td>
-      </tr>
-    </tbody>
-
-  <table>
-</div>
+<table class="table table-bordered">
+  <thead class="text-center">
+    <tr>
+      <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="d-flex flex-column">
+        <% items.each do |item| %>
+        <p>
+          <%= link_to item.genre.name, search_path(word: item.genre.name, model:"genre", method: "perfect"), class: 'text-dark' %>
+        </p>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>

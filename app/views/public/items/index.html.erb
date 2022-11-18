@@ -1,20 +1,12 @@
-<div class="container">
+<div class="container m-5">
   <div class="row">
-    <%= render 'genre', items: @items %>
-    <div class="">
+    <div class="col-3">
+      <%= render 'genre', items: @items %>
+    </div>
+    <div class="col-9">
       <h2>商品一覧</h2>
       <p>(全<%= @items.count %>件)</p>
-      <div class="d-flex flex-wrap">
-        <% @items.each do |item| %>
-          <div>
-            <%= link_to item_path(item.id) do %>
-              <%= image_tag item.image, size: '200x100' %>
-            <% end %>
-          </div>
-          <p><%= item.name %></p>
-          <p>¥<%= item.price %></p>
-        <% end %>
-      </div>
+      <%= render 'index', items: @items %>
     </div>
   </div>
 </div>
