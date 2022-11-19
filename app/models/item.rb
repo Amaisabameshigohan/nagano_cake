@@ -9,4 +9,12 @@ class Item < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true
   validates :price, presence: true
+
+  def self.search(search)
+    if search != ""
+      Item.where('genre_id LIKE(?)', "%#{search}%")
+    else
+      Item.all
+    end
+  end
 end

@@ -30,6 +30,7 @@ end
   patch '/customers/withdraw' => 'public/customers#withdraw'
   get '/about' => 'public/homes#about', as: :about
   get '/customers/my_page' => 'public/customers#show'
+  get '/search' => 'public/searches#search'
 
   namespace :admin do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]
@@ -38,7 +39,7 @@ end
     resources :orders, only: [:show, :update]
     resources :order_details, only: [:update]
   end
-  
-  
+
+
 
 end

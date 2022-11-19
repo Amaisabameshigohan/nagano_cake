@@ -1,0 +1,16 @@
+<div class="d-flex flex-wrap">
+  <% items.each do |item| %>
+    <%= link_to item_path(item.id) do %>
+    <div class="m-2">
+      <div class="mb-2">
+        <%= image_tag item.image, size: '200x120' %>
+      </div>
+      <p class="text-dark"><strong><%= item.name %></strong></p>
+      <p class="text-dark"><strong>¥<%= item.price %></strong></p>
+    </div>
+    <% end %>
+  <% end %>
+  <div class="mx-auto">
+    <%= paginate items %>
+  </div>
+</div>
