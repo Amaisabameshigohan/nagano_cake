@@ -1,4 +1,6 @@
-<div class="container m-5">
- <h2>商品編集</h2>
- <%= render 'form', item: @item, genres: Genre.all %>
+<div class="container m-5 mx-auto">
+  <div class="row mb-4">
+    <h3 class="col-2 text-center bg-light">商品編集</h3>
+  </div>
+  <%= render 'form', item: @item, genres: Genre.all %>
 </div>

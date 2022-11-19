@@ -1,5 +1,7 @@
-<div class="container m-5">
-  <h2>商品新規登録</h2>
+<div class="container m-5 mx-auto">
+  <div class="row mb-4">
+    <h3 class="col-2 text-center bg-light">商品新規登録</h3>
+  </div>
   <%= render 'form', item: Item.new, genres: Genre.all %>
 </div>
 
