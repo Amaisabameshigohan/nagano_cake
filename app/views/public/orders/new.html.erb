@@ -17,6 +17,19 @@
     <div class="col-2 col-form-label font-weight-bold">
       <%= f.label :payment_method, 'お届け先' %>
     </div>
+    
+    <div class="">
+      <%= f.radio_button :postal_code, '' %>
+      <%= f.label :postal_code, 'ご自身の住所' %>
+    </div>
+    <div class="">
+      <%= f.radio_button :postal_code, '' %>
+      <%= f.label :postal_code, '登録済み住所から選択' %>
+    </div>
+    <div class="">
+      <%= f.radio_button :postal_code, '' %>
+      <%= f.label :postal_code, '新しいお届け先' %>
+    </div>
     <div class="form-group">
       <%= f.label :postal_code, '郵便番号（ハイフンなし）' %>
       <%= f.text_field :postal_code, class: 'font-control' %>
