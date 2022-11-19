@@ -1,11 +1,13 @@
-<div class="container m-5">
+<div class="container m-5 mx-auto">
   <div class="row">
-    <div class="col-3">
-      <%= render 'genre', items: @items %>
+    <div class="col-2">
+      <%= render 'genre', genres: @genres %>
     </div>
-    <div class="col-9">
-      <h2>商品一覧</h2>
-      <p>(全<%= @items.count %>件)</p>
+    <div class="col-10">
+      <div class="d-flex flex-row">
+        <h2>商品一覧</h2>
+        <p class="d-flex align-items-end m-2">(全<%= @items.count %>件)</p>
+      </div>
       <%= render 'index', items: @items %>
     </div>
   </div>
