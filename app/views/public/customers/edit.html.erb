@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-4 text-center">
+      <h4>会員情報編集</h4>
+    </div>
+  </div>
+  
+  
+  <%= form_with model: @customer, url: customers_information_path, method: :patch do |f| %>
+  <div class="row mt-5">
+    <table>
+      <tr>
+        <td width="200">氏名</td>
+        <td><%= f.text_field :last_name, autofocus: true %></td>
+        <td><%= f.text_field :first_name %></td>
+      </tr>
+      
+      <tr>
+        <td>フリガナ
+        <td><%= f.text_field :last_name_kana %>
+        <td><%= f.text_field :first_name_kana %>
+      </tr>
+      
+      <tr>
+        <td>郵便番号
+        <td><%= f.text_field :postal_code %>
+      </tr>
+  
+      <tr>
+        <td>住所
+        <td colspan="3"><%= f.text_field :address ,size:"70" %>
+      </tr>
+           
+      <tr> 
+        <td>電話番号
+        <td><%= f.text_field :telephone_number %>
+      </tr>
+            
+      <tr>    
+        <td>メールアドレス
+        <td><%= f.email_field :email %>
+      </tr>
+      
+      <tr>
+        <td></td>
+        <td colspan="2"><%= f.submit "編集内容を保存", class: "mt-3 btn btn-success px-5" %></td>
+        <td><%= link_to "退会する", customers_unsubscribe_path, class: "mt-3 btn btn-danger px-4" %></td>
+      </tr>
+      
+    </table>
+  </div>
+
+
+  <% end %>
