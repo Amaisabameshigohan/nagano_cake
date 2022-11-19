@@ -1,0 +1,18 @@
+<div class="container">
+
+  <div class="d-flex align-items-center justify-content-center mt-5">
+    <h4><strong>本当に退会しますか？</strong></h4>
+  </div>
+  
+  <div class="d-flex align-items-center justify-content-center mt-5">
+    <p>退会すると、会員登録情報や</br>
+    これまでの購入履歴が閲覧できなくなります。</br>
+    退会する場合は、「退会する」をクリックしてください。</p>
+  </div>
+  
+  <div class="d-flex align-items-center justify-content-center" >
+    <%= link_to "退会しない", customers_my_page_path, class: "mt-5 btn btn-primary px-5 mr-2" %>
+    <%= link_to "退会する", customers_withdraw_path, method: :patch, class: "mt-5 btn btn-danger px-5 ml-2" %>
+  </div>
+  
+</div>
