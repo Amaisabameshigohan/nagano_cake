@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   belongs_to :genre
+  has_many :cart_items
 
   has_one_attached :image
   enum is_active: { sale: true, stop_selling: false }
