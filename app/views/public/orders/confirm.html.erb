@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-8">
+
+<h2>注文情報確認</h2>
+
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= cart_item.item.name %></td>
+            <td><%= (cart_item.item.price*1.10).to_i %></td>
+            <td><%= cart_item.amount %></td>
+            <td>
+              <% subtotal = ((cart_item.item.price*cart_item.amount)*1.10).to_i %>
+              <%= subtotal %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-xs-3">
+      <table class= "table table-bordered">
+        <tbody class="tbody-light">
+          <%= form_with model: @order, url: orders_path, local: true do |f| %>
+          <tr>
+            <td class="confirm-td">送料</td>
+            <td><%= @order.shipping_cost %></td>
+          </tr>
+          <tr>
+            <td class="confirm-td">商品合計</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="confirm-td">請求金額</td>
+            <td>
+              
+              <%= f.hidden_field :total_payment %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-2 col-form-label font-weight-bold">支払方法</div>
+    <%= @order.payment_method %>
+    <%#= f.hidden_field :payment_method %><br>
+  </div>
+  <div class="row">
+    <div class="col-2 col-form-label font-weight-bold">お届け先</div>
+    〒<%= @order.postal_code %>
+    <%= @order.address %><br>
+    <%= @order.name %>
+  </div>
+
+</div>
