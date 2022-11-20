@@ -1,9 +1,9 @@
 class Public::CustomersController < ApplicationController
-  
+
   def show
     @customer = current_customer
   end
-  
+
   def edit
     @customer = current_customer
   end
@@ -11,8 +11,8 @@ class Public::CustomersController < ApplicationController
   def update
     @customer = current_customer
     if @customer.update(customer_params)
-      
-      redirect_to customers_information_edit_path
+
+      redirect_to customers_my_page_path
     else
       flash[:alert] = "保存できませんでした"
       redirect_to customers_information_edit_path
@@ -23,7 +23,7 @@ class Public::CustomersController < ApplicationController
   def unsubscribe
     @customer = current_customer
   end
-  
+
   def withdraw
     @customer = current_customer
     @customer.update(is_deleted: true)
@@ -31,10 +31,10 @@ class Public::CustomersController < ApplicationController
     flash[:notice] = "退会処理を実行いたしました"
     redirect_to root_path
   end
-  
-  
-  
-  
+
+
+
+
   private
 
   def customer_params
