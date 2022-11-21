@@ -9,16 +9,15 @@ class Public::OrdersController < ApplicationController
     
     def create
       @order = Order.new(order_params)
-      if @order.save!
-        @cart_items = current_customer.cart_items
-        redirect_to root_path
+      if @order.save
+        redirect_to orders_complete_path
       else
         render 'new'
       end
     end
 
     def confirm
-      @cart_items = current_customer.cart_items
+      @cart_items = current_customer.cart_items.all
       @order = Order.new(order_params)
       @order.payment_method = params[:order][:payment_method]
       @order.shipping_cost = 800
@@ -33,7 +32,7 @@ class Public::OrdersController < ApplicationController
         @order.address = @address.address
         @order.name = @address.name
       elsif params[:order][:select_address] == "2"
-        address_new = current_customer.address.new(address_params)
+        address_new = current_customer.addresses.new(address_params)
         if address_new.save
         else
           render :new
@@ -55,5 +54,9 @@ class Public::OrdersController < ApplicationController
 
     def order_params
       params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
+    end
+    
+    def address_params
+      params.require(:order).permit(:postal_code, :address, :name)
     end
 end
