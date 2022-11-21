@@ -1,9 +1,12 @@
 <div class="container mt-5 mb-3 mx-auto">
-  <div class="row m-4">
-    <div class="col-12">
+  <div class="row mb-4">
+    <div class="d-flex col-12">
       <h3 class="col-3 text-center bg-light">商品一覧</h3>
-      <div class="">
-        <h3 class="shadow rounded-circle"><%= link_to '＋', new_admin_item_path, class: 'text-secondary' %></h3>
+      <div class="col-8"></div>
+      <div class="col-1">
+        <h3 class="float-end shadow rounded-circle text-center" style="width:3rem;height:3rem;">
+          <%= link_to '＋', new_admin_item_path, class: 'text-secondary align-middle' %>
+        </h3>
       </div>
     </div>
   </div>
