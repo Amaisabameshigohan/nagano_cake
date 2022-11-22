@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 <div class="container">
   <div class="row">
-    <div class="col-md-1">
-      
+    <div class="col-2">
+      <%= render 'public/items/genre' , genres: @genres %>
     </div>
-    <div class="col-md-10 offset-md-1">
+    <div class="col-10">
       <div class="">
         <p class="col-md-8 w-50 mx-auto mt-4 shadow-lg">
           ようこそ、ながのCAKEへ！<br>
