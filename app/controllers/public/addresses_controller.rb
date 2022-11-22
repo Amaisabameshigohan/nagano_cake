@@ -1,7 +1,7 @@
 class Public::AddressesController < ApplicationController
 
   def index
-    @addresses = Address.all
+    @addresses = current_customer.addresses.all
     @address = Address.new
   end
 
@@ -11,13 +11,18 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     @address.save
     redirect_to addresses_path
   end
 
   def update
     @address = Address.find(params[:id])
-    @address.update(address_params)
+    if @address.update(address_params)
+      flash[:alert] = "配送先を追加しました"
+      redirect_to addresses_path
+    end
+      flash[:alert] = "保存できませんでした"
     redirect_to addresses_path
   end
 
