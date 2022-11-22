@@ -1,54 +1,59 @@
 <div class="container">
+  
   <div class="row">
-
     <h4>注文履歴詳細</h4>
+  </div>
+
     <!------------顧客情報テーブル------------>
+  <div class="row mb-3">
     <table>
       <tr>
-        <td>購入者</td>
-        <td><%= @order.customer_id.name %></td>
+        <td class="font-weight-bold">購入者</td>
+        
+        <td><%= link_to admin_customer_path do %>
+        <%= @order.customer.last_name + @order.customer.first_name %>
+        <% end %></td>
         <td></td>
       </tr>
 
       <tr>
-        <td>注文日</td>
-        <td><%= @order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td class="font-weight-bold">注文日</td>
+        <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
         <td></td>
       </tr>
 
       <tr>
-        <td>配送先</td>
-        <td colspan="2"><%= @order.postal_code + @order.address %></td>
+        <td class="font-weight-bold">配送先</td>
+        <td colspan="2"><%= "〒" + @order.postal_code + @order.address %></td>
       </tr>
 
       <tr>
         <td></td>
-        <td>@order.customer_id.name</td>
+        <td><%= @order.name %></td>
         <td></td>
       </tr>
 
       <tr>
-        <td>支払方法</td>
-        <td>enum</td>
-        <td></td>
+        <td class="font-weight-bold">支払方法</td>
+        <td><%= @order.payment_method %></td>
       </tr>
-
-        <tr>
-        <td>注文ステータス</td>
-
-            <%= form_with model: @order,url: admin_order_path, method: :patch, do |f| %>
-        <td><%= f.select :プロパティ名, options_from_collection_for_select(モデル, :status, :/モデルに記述する/セレクトボックスに表示する値(メソッド)) %></td>
-        <td><%= f.submit '更新', class: "btn btn-success" %></td>
-            <% end %>
+        
+      <tr>
+        <td class="font-weight-bold">注文ステータス</td>        
+        <%= form_with model: @order, url: admin_order_path(@order), local: true, method: :patch do |f| %>
+        <td><%= f.select :status, Order.statuses_i18n.invert, {prompt: false} %></td>
+        <td><%= f.submit "更新",class: "btn btn-success" %></td>
+        <% end %>
       </tr>
     </table>
-
   </div>
+  
+  
   <!------------注文詳細テーブル------------>
   <div class="row">
-    <div class="col-8">
+    <div class="col-8 border-top">
 
-      @order.each do ||
+      <!--@order.each do ||-->
       <table>
         <th bgcolor="#ffffc0">
           <tr>
@@ -61,39 +66,41 @@
           </tr>
         </th>
 
-        <% @order.each do |order_deteail| %>
+        <!--%= .each do |order_deteail| %>-->
         <tbody>
-          <tr>
-              <td><%= order_detail.product.name %></td>
-              <td><%= number_to_currency(order_detail.product.price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>
-              <td><%= order_detail.quantity %></td>
-              <td><%= number_to_currency(order_detail.purchase_price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>
-            <td>更新</td>
-          </tr>
+      <!--    <tr>-->
+      <!--        <td>%= order_detail.product.name %></td>-->
+      <!--        <td>%= number_to_currency(order_detail.product.price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>-->
+      <!--        <td>%= order_detail.quantity %></td>-->
+      <!--        <td>%= number_to_currency(order_detail.purchase_price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>-->
+      <!--      <td>更新</td>-->
+      <!--    </tr>-->
         </tbody>
+        <!--% end %>-->
       </table>
-
     </div>
+
 
     <!------------金額表示テーブル------------>
     <div class="col-4">
       <table>
         <tr>
-          <td></td>
-          <td></td>
+          <td class="font-weight-bold">商品合計</td>
+          <td>"円"</td>
         </tr>
 
         <tr>
-          <td></td>
-          <td></td>
+          <td class="font-weight-bold">送料</td>
+          <td><%= @order.shipping_cost %></td>
         </tr>
 
         <tr>
-          <td></td>
-          <td></td>
+          <td class="font-weight-bold">請求金額合計</td>
+          <td><%= @order.total_payment %></td>
         </tr>
       </table>
     </div>
+
 
   </div>
 </div>
