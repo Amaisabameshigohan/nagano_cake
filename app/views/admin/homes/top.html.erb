@@ -16,8 +16,10 @@
           <% @orders.each do |order| %>
           <tr>
             <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
-            <td><%= order.customer_id.name %></td>
-            <td><%= order.数量.sum(:amount) %></td>
+            <td><%= order.customer.last_name + order.customer.first_name %></td>
+            <td>
+              <!--%= order.数量.sum(:amount) %>-->
+            </td>
             <td><%= order.status %></td>
           </tr>
           <% end %>

@@ -1,8 +1,7 @@
 class Admin::HomesController < ApplicationController
 
   def top
-    @orders = Order.all
-    # @cart_items = Cart_item.all
+    @orders = Order.page(params[:page]).per(5)
   end
 
 end
