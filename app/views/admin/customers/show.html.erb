@@ -40,11 +40,14 @@
         <% end %>
   	  </td>
     </tr>
-  </table>
 
-  <div class="row">
-    <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success" %>
-    <!--%= link_to "注文履歴一覧", admin_path,class: 'btn btn-primary' %>-->
-  </div>
+    <tr>
+  	  <td></td>
+  	  <td>
+  	    <%= link_to "編集する", edit_admin_customer_path, class: "btn btn-success mr-5" %>
+  	    <%= link_to "注文履歴一覧", admin_order_path,class: 'btn btn-primary' %>
+  	  </td>
+    </tr>
+  </table>
 
 </div>
