@@ -18,7 +18,11 @@ class Public::AddressesController < ApplicationController
 
   def update
     @address = Address.find(params[:id])
-    @address.update(address_params)
+    if @address.update(address_params)
+      flash[:alert] = "配送先を追加しました"
+      redirect_to addresses_path
+    end
+      flash[:alert] = "保存できませんでした"
     redirect_to addresses_path
   end
 
