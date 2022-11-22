@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
 
-<h4 class="col-auto bg-light">注文履歴一覧</h4>
+<h4 class="col-auto bg-light mt-4">注文履歴一覧</h4>
 
-      <table class="table table-bordered">
-        <thead class="thead-light">
+      <table class="table table-bordered mt-2">
+        <thead>
           <tr>
             <th>購入日時</th>
             <th>購入者</th>
@@ -20,9 +20,15 @@
                 <% end %>
             </td>
             <td><%= order.customer.last_name + order.customer.first_name %></td>
-            <td>
-              <!--%= order.数量.sum(:amount) %>-->
-            </td>
+            
+            <!----------総個数を注文詳細から取得---------->
+            <% @sum = 0 %>
+            <% order.order_details.each do |order_detail| %>
+            <% @sum += order_detail.amount %>
+            <% end %>
+            <td><%= @sum %></td>
+            <!-------------------------------------------->
+            
             <td><%= order.status %></td>
           </tr>
           <% end %>
