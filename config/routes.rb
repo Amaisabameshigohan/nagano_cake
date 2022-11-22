@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
-
+get '/orders/complete' => 'public/orders#complete'
 scope module: :public do
   root to: "homes#top"
   resources :items, only: [:index, :show]
@@ -24,7 +24,6 @@ scope module: :public do
 end
 
   post '/orders/confirm' => 'public/orders#confirm'
-  get '/orders/complete' => 'public/orders#complete'
   get '/customers/information/edit' => 'public/customers#edit'
   patch '/customers/information' => 'public/customers#update'
   get '/customers/unsubscribe' => 'public/customers#unsubscribe'

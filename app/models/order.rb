@@ -2,7 +2,5 @@ class Order < ApplicationRecord
   belongs_to :customer
   enum payment_method: { credit_card: 0, transfer: 1 }
   
-  def sum_of_price
-    item.taxin_price * quantity
-  end  
+  enum status: { 入金待ち:0, 入金確認:1, 製作中:2, 発送準備中:3, 発送済:4}
 end
