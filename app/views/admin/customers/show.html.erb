@@ -32,7 +32,13 @@
     </tr>
     <tr>
   	  <td>会員ステータス</td>
-  	  <td><%= @customer.first_name %></td>
+  	  <td>
+  	    <% if @customer.is_deleted == false %>
+          有効
+        <% elsif %>
+          退会
+        <% end %>
+  	  </td>
     </tr>
   </table>
 

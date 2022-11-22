@@ -20,13 +20,19 @@
             <% end %>
           </td>
           <td><%= customer.email %></td>
-          <td><%= customer.last_name %></td>
+          <td>
+            <% if customer.is_deleted == false %>
+              <span class="text-success">有効</span>
+            <% elsif %>
+              退会
+            <% end %>
+          </td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-  <div class="ぱ">
-    <%= paginate @customers %>
+  <div class="d-flex justify-content-center">
+    <%= paginate @customers, theme: 'bootstrap-5' %>
   </div>
 </div>

@@ -10,28 +10,38 @@
     </tr>
 
     <tr>
-      <td>フリガナ
-      <td><%= f.text_field :last_name_kana %>
-      <td><%= f.text_field :first_name_kana %>
+      <td>フリガナ</td>
+      <td><%= f.text_field :last_name_kana %></td>
+      <td><%= f.text_field :first_name_kana %></td>
     </tr>
 
     <tr>
-      <td>郵便番号
-      <td><%= f.text_field :postal_code %>
+      <td>郵便番号</td>
+      <td><%= f.text_field :postal_code %></td>
     </tr>
       <tr>
-      <td>住所
-      <td colspan="3"><%= f.text_field :address ,size:"70" %>
+      <td>住所</td>
+      <td colspan="3"><%= f.text_field :address ,size:"70" %></td>
     </tr>
 
     <tr>
-      <td>電話番号
-      <td><%= f.text_field :telephone_number %>
+      <td>電話番号</td>
+      <td><%= f.text_field :telephone_number %></td>
     </tr>
 
     <tr>
-      <td>メールアドレス
-      <td><%= f.email_field :email %>
+      <td>メールアドレス</td>
+      <td><%= f.email_field :email %></td>
+    </tr>
+
+    <tr>
+      <td>会員ステータス</td>
+      <td>
+        <%= f.radio_button :is_deleted, 'false' %>
+        <%= f.label :is_deleted, '有効' %>
+        <%= f.radio_button :is_deleted, 'true' %>
+        <%= f.label :is_deleted, '退会' %>
+      </td>
     </tr>
 
     <tr>
