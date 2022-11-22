@@ -31,6 +31,7 @@ end
   get '/about' => 'public/homes#about', as: :about
   get '/customers/my_page' => 'public/customers#show'
   get '/search' => 'public/searches#search'
+  get '/admin' => 'admin/homes#top', as: :admin
 
   namespace :admin do
     resources :items, only: [:index, :new, :create, :show, :edit, :update]

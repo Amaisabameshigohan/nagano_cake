@@ -1,0 +1,99 @@
+<div class="container">
+  <div class="row">
+
+    <h4>注文履歴詳細</h4>
+    <!------------顧客情報テーブル------------>
+    <table>
+      <tr>
+        <td>購入者</td>
+        <td><%= @order.customer_id.name %></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>注文日</td>
+        <td><%= @order.created_at.strftime("%Y/%m/%d %H:%M") %></td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>配送先</td>
+        <td colspan="2"><%= @order.postal_code + @order.address %></td>
+      </tr>
+
+      <tr>
+        <td></td>
+        <td>@order.customer_id.name</td>
+        <td></td>
+      </tr>
+
+      <tr>
+        <td>支払方法</td>
+        <td>enum</td>
+        <td></td>
+      </tr>
+
+        <tr>
+        <td>注文ステータス</td>
+
+            <%= form_with model: @order,url: admin_order_path, method: :patch, do |f| %>
+        <td><%= f.select :プロパティ名, options_from_collection_for_select(モデル, :status, :/モデルに記述する/セレクトボックスに表示する値(メソッド)) %></td>
+        <td><%= f.submit '更新', class: "btn btn-success" %></td>
+            <% end %>
+      </tr>
+    </table>
+
+  </div>
+  <!------------注文詳細テーブル------------>
+  <div class="row">
+    <div class="col-8">
+
+      @order.each do ||
+      <table>
+        <th bgcolor="#ffffc0">
+          <tr>
+            <td>商品名</td>
+            <td>単価（税込）</td>
+            <td>数量</td>
+            <td>小計</td>
+            <td>製作ステータス</td>
+            <td></td>
+          </tr>
+        </th>
+
+        <% @order.each do |order_deteail| %>
+        <tbody>
+          <tr>
+              <td><%= order_detail.product.name %></td>
+              <td><%= number_to_currency(order_detail.product.price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>
+              <td><%= order_detail.quantity %></td>
+              <td><%= number_to_currency(order_detail.purchase_price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>
+            <td>更新</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+    <!------------金額表示テーブル------------>
+    <div class="col-4">
+      <table>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+
+  </div>
+</div>
