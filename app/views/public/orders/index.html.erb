@@ -23,7 +23,11 @@
               <%= order.address %><br>
               <%= order.name %>
             </td>
-            <td><%#= %></td>
+            <td>
+              <% @cart_items.each do |cart_item| %>
+                <%= cart_item.item.name %>
+              <% end %>
+            </td>
             <td>
               <%= order.total_payment %>
             </td>

@@ -51,6 +51,7 @@
   <div class="row">
     <table class= "table table-bordered">
         <div class="font-weight-bold">注文内容</div>
+        <% @cart_items.each do |cart_item| %>
         <thead class="thead-light">
           <tr>
             <th>商品</th>
@@ -60,12 +61,15 @@
           </tr>
         </thead>
         <tbody>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
+          <td><%= cart_item.item.name %></td>
+          <td><%= (cart_item.item.price*1.10).to_i %></td>
+          <td><%= cart_item.amount %></td>
+          <td>
+            <% subtotal = ((cart_item.item.price*cart_item.amount)*1.10).to_i %>
+            <%= subtotal %>
+          </td>
         </tbody>
-
+        <% end %>
       </table>
   </div>
 </div>
