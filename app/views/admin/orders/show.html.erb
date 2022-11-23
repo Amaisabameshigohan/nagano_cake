@@ -6,6 +6,8 @@
 
     <!------------顧客情報テーブル------------>
   <div class="row mb-3">
+    <!--注文ステータス更新用form、table外へ-->
+    <%= form_with model: @order, url: admin_order_path(@order), local: true, method: :patch do |f| %>
     <table>
       <tr>
         <td class="font-weight-bold">購入者</td>
@@ -40,7 +42,7 @@
 
       <tr>
         <td class="font-weight-bold">注文ステータス</td>
-        <%= form_with model: @order, url: admin_order_path(@order), local: true, method: :patch do |f| %>
+
         <td><%= f.select :status, Order.statuses_i18n.invert, {prompt: false} %></td>
         <td><%= f.submit "更新",class: "btn btn-success" %></td>
         <% end %>
@@ -51,24 +53,24 @@
 
   <!------------注文詳細テーブル------------>
   <div class="row">
-    <div class="col-8 border-top">
+    <div class="col-9 border-top">
 
 
       <table>
-        <th>
+        <thead>
           <tr>
-            <td>商品名</td>
-            <td>単価（税込）</td>
-            <td>数量</td>
-            <td>小計</td>
-            <td>製作ステータス</td>
-            <td></td>
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+            <th></th>
           </tr>
-        </th>
+        </thead>
 
 
         <tbody>
-          <% @order_details.each do |order_detail| %>
+          <% @order.order_details.each do |order_detail| %>
           <tr>
 
             <td><%= order_detail.item.name %></td>
@@ -78,12 +80,15 @@
             <td><%= order_detail.price * order_detail.amount %></td>
               
               <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true, method: :patch do |f| %>
-            <td><%= f.select :item_status, [["着手不可","0"], ["製作待ち","1"], ["製作中","2"], ["製作完了","3"]] %></td>
-            <td><%= f.submit "更新", class: "btn btn-success" %>
-              <% end %>
+            <td><%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, {prompt: false} %></td>
+            <td>
+              <%= f.hidden_field :order_detail_id, value: order_detail.id %>
+              <%= f.submit "更新", class: "btn btn-success" %>
             </td>
-          <% end %>
+            <% end %>
           </tr>
+          <% end %>
+          
 
         </tbody>
 
@@ -92,11 +97,11 @@
 
 
     <!------------金額表示テーブル------------>
-    <div class="col-4">
+    <div class="col-3 mt-5">
       <table>
         <tr>
           <td class="font-weight-bold">商品合計</td>
-          <td><%= @order.total_payment %><%= @order.shipping_cost %> 円</td>
+          <td><%= @order.total_payment - @order.shipping_cost %> 円</td>
         </tr>
 
         <tr>

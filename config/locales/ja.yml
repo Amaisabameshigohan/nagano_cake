@@ -4,12 +4,12 @@ ja:
       is_active:
         sale: 販売中
         stop_selling: 販売停止中
-        
+
 ja:
   enums:
     order:
       payment_method:
-        credit_card: クレジットカード 
+        credit_card: クレジットカード
         transfer: 銀行振込
     status:
       no_payment: 入金待ち
@@ -17,3 +17,12 @@ ja:
       making: 製作中
       wait_send: 発送準備中
       sent: 発送済み
+
+ja:
+  enums:
+    order_detail:
+      making_status:
+        start_not_possible: 着手不可
+        production_pending: 製作待ち
+        in_production: 製作中
+        production_complete: 製作完了
