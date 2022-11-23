@@ -5,7 +5,6 @@ ja:
         sale: 販売中
         stop_selling: 販売停止中
 
-
     order:
       payment_method:
         credit_card: クレジットカード
@@ -18,8 +17,6 @@ ja:
       wait_send: 発送準備中
       sent: 発送済み
 
-ja:
-  enums:
     order_detail:
       making_status:
         start_not_possible: 着手不可

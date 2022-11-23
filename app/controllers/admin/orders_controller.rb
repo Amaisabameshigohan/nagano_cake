@@ -6,7 +6,6 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
-    # @order.update(order_params)
     if @order.update(order_params)
       if @order.status == "payment_confirmation"
         @order.order_details.update_all(making_status: :production_pending)

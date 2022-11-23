@@ -5,9 +5,9 @@ class Admin::OrderDetailsController < ApplicationController
     @order = @order_detail.order
     if @order_detail.update(order_update_params)
       if @order_detail.making_status == "in_production"
-        @order.update(status: :in_production)
+        @order.update(status: :製作中)
       elsif @order.order_details.count == @order.order_details.where(making_status: "production_complete").count
-        @order.update(status: :preparing_delivery)
+        @order.update(status: :発送準備中)        
       end
       redirect_to request.referer
     end
