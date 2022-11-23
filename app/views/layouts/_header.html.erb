@@ -1,9 +1,9 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light border-bottom">
+<header class="border-bottom">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
       <a class="col navbar-brand" href="/"><span>ながのCAKE</span></a>
       <% if customer_signed_in? %>
-        <p class="col mb-0">ようこそ<%= current_customer.first_name %>さん</p>
+        <p class="col mb-0">ようこそ<%= current_customer.last_name %>さん</p>
       <% end %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -61,4 +61,14 @@
 
     </div>
   </nav>
+
+  <div class="container">
+    <div class="d-flex flex-row-reverse mb-3">
+      <%= form_with url: search_path, local: true, method: :get do |f| %>
+        <%= f.text_field :content, placeholder: 'Search' %>
+        <%= f.submit "検索", class: 'btn-sm btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+
 </header>
