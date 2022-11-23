@@ -15,7 +15,6 @@ class Admin::OrdersController < ApplicationController
     else
       render "show"
     end
-
   end
 
 
