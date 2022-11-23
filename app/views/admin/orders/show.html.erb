@@ -1,5 +1,5 @@
 <div class="container">
-  
+
   <div class="row">
     <h4>注文履歴詳細</h4>
   </div>
@@ -9,7 +9,7 @@
     <table>
       <tr>
         <td class="font-weight-bold">購入者</td>
-        
+
         <td><%= link_to admin_customer_path do %>
         <%= @order.customer.last_name + @order.customer.first_name %>
         <% end %></td>
@@ -37,9 +37,9 @@
         <td class="font-weight-bold">支払方法</td>
         <td><%= @order.payment_method %></td>
       </tr>
-        
+
       <tr>
-        <td class="font-weight-bold">注文ステータス</td>        
+        <td class="font-weight-bold">注文ステータス</td>
         <%= form_with model: @order, url: admin_order_path(@order), local: true, method: :patch do |f| %>
         <td><%= f.select :status, Order.statuses_i18n.invert, {prompt: false} %></td>
         <td><%= f.submit "更新",class: "btn btn-success" %></td>
@@ -47,15 +47,15 @@
       </tr>
     </table>
   </div>
-  
-  
+
+
   <!------------注文詳細テーブル------------>
   <div class="row">
     <div class="col-8 border-top">
 
-      <!--@order.each do ||-->
+
       <table>
-        <th bgcolor="#ffffc0">
+        <th>
           <tr>
             <td>商品名</td>
             <td>単価（税込）</td>
@@ -66,17 +66,27 @@
           </tr>
         </th>
 
-        <!--%= .each do |order_deteail| %>-->
+
         <tbody>
-      <!--    <tr>-->
-      <!--        <td>%= order_detail.product.name %></td>-->
-      <!--        <td>%= number_to_currency(order_detail.product.price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>-->
-      <!--        <td>%= order_detail.quantity %></td>-->
-      <!--        <td>%= number_to_currency(order_detail.purchase_price, :precision =>0, :unit=>"円", format: "%n %u",strip_insignificant_zeros:true) %></td>-->
-      <!--      <td>更新</td>-->
-      <!--    </tr>-->
+          <% @order_details.each do |order_detail| %>
+          <tr>
+
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.price %></td>
+            <td><%= order_detail.amount %></td>
+            
+            <td><%= order_detail.price * order_detail.amount %></td>
+              
+              <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true, method: :patch do |f| %>
+            <td><%= f.select :item_status, [["着手不可","0"], ["製作待ち","1"], ["製作中","2"], ["製作完了","3"]] %></td>
+            <td><%= f.submit "更新", class: "btn btn-success" %>
+              <% end %>
+            </td>
+          <% end %>
+          </tr>
+
         </tbody>
-        <!--% end %>-->
+
       </table>
     </div>
 
@@ -86,17 +96,17 @@
       <table>
         <tr>
           <td class="font-weight-bold">商品合計</td>
-          <td>"円"</td>
+          <td><%= @order.total_payment %><%= @order.shipping_cost %> 円</td>
         </tr>
 
         <tr>
           <td class="font-weight-bold">送料</td>
-          <td><%= @order.shipping_cost %></td>
+          <td><%= @order.shipping_cost %> 円</td>
         </tr>
 
         <tr>
           <td class="font-weight-bold">請求金額合計</td>
-          <td><%= @order.total_payment %></td>
+          <td><%= @order.total_payment %> 円</td>
         </tr>
       </table>
     </div>
