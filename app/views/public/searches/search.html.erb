@@ -9,6 +9,11 @@
         <p class="d-flex align-items-end m-2">(全<%= @items.count %>件)</p>
       </div>
       <%= render 'index', items: @items %>
+      <div class="row">
+        <div class="col-11 d-flex justify-content-center">
+          <%= paginate @items, theme: 'bootstrap-5' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
