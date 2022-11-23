@@ -5,10 +5,15 @@
     </div>
     <div class="col-10">
       <div class="d-flex flex-row">
-        <h2>(<%= params[:name] %>)一覧</h2>
+        <h2>(<%= params[:content] %><%= params[:name] %>)一覧</h2>
         <p class="d-flex align-items-end m-2">(全<%= @items.count %>件)</p>
       </div>
       <%= render 'index', items: @items %>
+      <div class="row">
+        <div class="col-11 d-flex justify-content-center">
+          <%= paginate @items, theme: 'bootstrap-5' %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
