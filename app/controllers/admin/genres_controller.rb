@@ -10,7 +10,8 @@ class Admin::GenresController < ApplicationController
           flash[:notice] = "新しくジャンルを追加しました。"
           redirect_to admin_genres_path
       else
-          render 'index'
+        flash[:notice] = "ジャンル名が空白です"
+        redirect_to admin_genres_path
       end
   end
 
@@ -24,7 +25,8 @@ class Admin::GenresController < ApplicationController
             redirect_to admin_genres_path
             flash[:notice] = "ジャンルを更新しました。"
         else
-            render 'edit'
+          flash[:notice] = "ジャンル名が空白です。"
+          render 'edit'
         end
   end
 
