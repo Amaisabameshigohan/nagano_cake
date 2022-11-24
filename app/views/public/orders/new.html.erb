@@ -1,5 +1,7 @@
 <div class ="container">
-  <h2>注文情報入力</h2>
+  <div class="row mb-3">
+    <h4 class="col-auto bg-light">注文情報入力</h4>
+  </div>
   <%= form_with model: @order, url: orders_confirm_path, local:true do |f| %>
   <div class="">
     <div class="col-2 col-form-label font-weight-bold">支払方法</div>

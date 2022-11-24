@@ -1,7 +1,6 @@
 class Public::OrdersController < ApplicationController
     def index
-      @orders = current_customer.orders.all
-      @cart_items = current_customer.cart_items.all
+      @orders = current_customer.orders.order(create_at: :desc)
     end
 
     def new
@@ -13,7 +12,7 @@ class Public::OrdersController < ApplicationController
       @order.customer_id = current_customer.id
       if @order.save
         @cart_items = current_customer.cart_items
-        
+
       ###カート破棄前に注文詳細へ保存する記述###
         @cart_items.each do |cart_item|
           order_detail = OrderDetail.new(order_id: @order.id)
@@ -23,10 +22,10 @@ class Public::OrdersController < ApplicationController
           order_detail.making_status = 0
           order_detail.save
         end
-      ##########ここまで##########        
+      ##########ここまで##########
         @cart_items.destroy_all
-        
- 
+
+
         redirect_to orders_complete_path
       else
         render :new
@@ -64,7 +63,7 @@ class Public::OrdersController < ApplicationController
 
     def show
       @order = Order.find(params[:id])
-      @cart_items = current_customer.cart_items.all
+      @order_details = @order.order_details
     end
 
     private
