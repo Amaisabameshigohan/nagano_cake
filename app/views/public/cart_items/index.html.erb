@@ -49,15 +49,20 @@
     <% end %>
     </table>
 
-
-    <div class="col-auto">
+    <div class="col-12">
+    <div class="float-left">
       <%= link_to "買い物を続ける", root_path,class: "btn btn-primary" %>
     </div>
-    <div class="col text-right">
-      <tr>
-        <th>合計金額</th>
-          <td><%= total %></td>
-      </tr>
+    <div class="col-4 float-right">
+      <table class= "table table-bordered">
+        <thead class="thead-light">
+          <tr>
+            <th>合計金額</th>
+            <td><%= total %></td>
+          </tr>
+        </thead>
+      </table>
+    </div>
     </div>
   </div>
 
