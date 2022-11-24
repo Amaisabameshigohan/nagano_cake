@@ -1,7 +1,12 @@
 <header class="border-bottom">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="col navbar-brand" href="/"><span>ながのCAKE</span></a>
+      <% if admin_signed_in? %>
+        <a class="col navbar-brand" href="/admin"><span>ながのCAKE</span></a>
+      <% else %>
+        <a class="col navbar-brand" href="/"><span>ながのCAKE</span></a>
+      <% end %>
+
       <% if customer_signed_in? %>
         <p class="col mb-0">ようこそ<%= current_customer.last_name %>さん</p>
       <% end %>
