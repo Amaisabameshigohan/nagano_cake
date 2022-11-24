@@ -17,7 +17,8 @@ class Public::AddressesController < ApplicationController
       redirect_to addresses_path
     else
       flash[:notice] = "保存できませんでした"
-      redirect_to addresses_path
+      @addresses = current_customer.addresses.all
+      render :index
     end
   end
 
