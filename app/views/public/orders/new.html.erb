@@ -1,6 +1,5 @@
 <div class ="container">
   <h2>注文情報入力</h2>
-  <!--<div class="d-flex justify-content-center">-->
   <%= form_with model: @order, url: orders_confirm_path, local:true do |f| %>
   <div class="">
     <div class="col-2 col-form-label font-weight-bold">支払方法</div>
@@ -33,18 +32,19 @@
     </div>
     <div class="form-group">
       <%= f.label :postal_code, '郵便番号（ハイフンなし）' %>
-      <%= f.text_field :postal_code, class: 'font-control' %>
+      <%= f.text_field :postal_code, class: 'col-lg-2', placeholder: '0000000' %>
     </div>
     <div class="form-group">
       <%= f.label :address, '住所' %>
-      <%= f.text_field :address, class: 'font-control' %>
+      <%= f.text_field :address, class: 'col-lg-4', placeholder: '東京都港区赤坂2−１' %>
     </div>
     <div class="form-group">
       <%= f.label :name, '宛名' %>
-      <%= f.text_field :name, class: 'font-control' %>
+      <%= f.text_field :name, class: 'col-lg-2', placeholder: '令和道子' %>
     </div>
-  </div>
-  <%= f.submit '確認画面へ進む', class: 'btn btn-primary' %>
+    <div class="col-12">
+      <%= f.submit '確認画面へ進む', class: 'btn btn-primary' %>
+    </div>
   <% end %>
-  <!--</div>-->
+  </div>
 </div>

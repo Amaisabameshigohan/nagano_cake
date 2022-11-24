@@ -18,7 +18,7 @@
         <div class="">
           <% @items.each do |item| %>
             <%= image_tag item.image, size: '100x100' %>
-            <%= item.name %>
+            <%= link_to item.name, item_path(item.id) %>
             <%= item.price %>
           <% end %>
         </div>
