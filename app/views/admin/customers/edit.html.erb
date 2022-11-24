@@ -1,4 +1,6 @@
 <div class="container mt-4">
+  <%= render "layouts/errors", obj: @customer %>
+
   <h4 class="mb-4"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h4>
 
   <%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>

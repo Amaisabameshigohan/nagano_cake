@@ -15,20 +15,12 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
-
+      flash[:notice] = "内容を変更しました"
       redirect_to admin_customer_path
     else
-      flash[:alert] = "保存できませんでした"
-      redirect_to edit_admin_customer_path
+      flash[:notice] = "保存できませんでした"
+      render :edit
     end
-  end
-
-  def withdraw
-    @customer = Customer.find(params[:id])
-    @customer.update(is_deleted: true)
-    reset_session
-    flash[:notice] = "退会処理を実行いたしました"
-    redirect_to admin_customer_path
   end
 
 

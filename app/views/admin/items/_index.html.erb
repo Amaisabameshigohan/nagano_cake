@@ -13,9 +13,7 @@
       <tr>
         <td><%= item.id %></td>
         <td>
-          <%= link_to admin_item_path(item.id), class: 'text-dark' do %>
-            <%= item.name %>
-          <% end %>
+          <%= link_to item.name, admin_item_path(item.id), class: 'text-dark text-decoration-underline' %>
         </td>
         <td><%= item.price %></td>
         <td><%= item.genre.name %></td>

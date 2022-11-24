@@ -13,7 +13,20 @@ class Public::OrdersController < ApplicationController
       @order.customer_id = current_customer.id
       if @order.save
         @cart_items = current_customer.cart_items
+        
+      ###カート破棄前に注文詳細へ保存する記述###
+        @cart_items.each do |cart_item|
+          order_detail = OrderDetail.new(order_id: @order.id)
+          order_detail.item_id = cart_item.item_id
+          order_detail.price = cart_item.item.price * 1.1
+          order_detail.amount = cart_item.amount
+          order_detail.making_status = 0
+          order_detail.save
+        end
+      ##########ここまで##########        
         @cart_items.destroy_all
+        
+ 
         redirect_to orders_complete_path
       else
         render :new

@@ -25,6 +25,7 @@
       <% @cart_items.each do |cart_item| %>
         <tr>
           <td>
+            <%= image_tag cart_item.item.image, size: '80x60' %>
             <%= cart_item.item.name %>
           </td>
           <td><%= (cart_item.item.price*1.10).to_i %></td>
