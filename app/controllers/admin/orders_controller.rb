@@ -1,4 +1,5 @@
 class Admin::OrdersController < ApplicationController
+  before_action :authenticate_admin!
 
   def show
     @order = Order.find(params[:id])
@@ -20,7 +21,7 @@ class Admin::OrdersController < ApplicationController
 
 
   private
-  
+
   def order_params
     params.require(:order).permit(:status)
   end
