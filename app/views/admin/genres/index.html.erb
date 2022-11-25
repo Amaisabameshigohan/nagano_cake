@@ -1,7 +1,7 @@
 <div class="container m-5 mx-auto">
   <%= render '/layouts/errors', obj: @genre %>
     <div class="row">
-        <h3 class="col-3 text-center bg-light">ジャンル一覧・追加</h3>
+        <h3 class="col-3 text-center">ジャンル一覧・追加</h3>
     </div>
     <div class="ml-5">
     <%= form_with model: [:admin, @genre], local: true do |f| %>
@@ -17,7 +17,7 @@
         <% end %>
         </div>
 
-     
+
 
     <div class="row">
       <div class="col-11 mt-3">

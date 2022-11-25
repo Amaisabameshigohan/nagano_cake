@@ -1,7 +1,7 @@
 <div class="container m-5 mx-auto">
   <%= render 'layouts/errors', obj: @item %>
   <div class="row mb-4">
-    <h3 class="col-2 text-center bg-light">商品編集</h3>
+    <h3 class="col-2 text-center">商品編集</h3>
   </div>
   <%= render 'form', item: @item, genres: Genre.all %>
 </div>

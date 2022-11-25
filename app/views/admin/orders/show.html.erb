@@ -10,9 +10,9 @@
     <%= form_with model: @order, url: admin_order_path(@order), local: true, method: :patch do |f| %>
     <table>
       <tr>
-        <td class="font-weight-bold">購入者</td>
+        <td class="font-weight-bold" style="width:150px;">購入者</td>
 
-        <td><%= link_to admin_customer_path(@order.customer.id) do %>
+        <td><%= link_to admin_customer_path(@order.customer.id), class: 'text-dark' do %>
         <%= @order.customer.last_name + @order.customer.first_name %>
         <% end %></td>
         <td></td>
@@ -56,8 +56,8 @@
     <div class="col-9 border-top">
 
 
-      <table>
-        <thead>
+      <table class="table">
+        <thead class="thead-light">
           <tr>
             <th width="25%">商品名</th>
             <th width="15%">単価（税込）</th>
@@ -76,16 +76,16 @@
             <td><%= order_detail.price %></td>
             <td><%= order_detail.amount %></td>
             <td><%= order_detail.price * order_detail.amount %></td>
-            <td> 
+            <td>
               <%= form_with model: order_detail, url: admin_order_detail_path(order_detail), local: true, method: :patch do |f| %>
               <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert, {prompt: false} %>
-              <%= f.hidden_field :order_detail_id, value: order_detail.id %>            
+              <%= f.hidden_field :order_detail_id, value: order_detail.id %>
               <%= f.submit "更新", class: "btn btn-success" %>
             </td>
             <% end %>
           </tr>
           <% end %>
-          
+
 
         </tbody>
 
@@ -94,10 +94,10 @@
 
 
     <!------------金額表示テーブル------------>
-    <div class="col-3 mt-5">
+    <div class="col-3 d-flex align-items-end">
       <table>
         <tr>
-          <td class="font-weight-bold">商品合計</td>
+          <td class="font-weight-bold" style="width:120px;">商品合計</td>
           <td> <%= @order.total_payment - @order.shipping_cost %> 円</td>
         </tr>
 
@@ -108,7 +108,7 @@
 
         <tr>
           <td class="font-weight-bold">請求金額合計</td>
-          <td> <%= @order.total_payment %> 円</td>
+          <td><strong><%= @order.total_payment %> 円</strong></td>
         </tr>
       </table>
     </div>
