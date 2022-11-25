@@ -6,7 +6,7 @@
   <div class="border-top border-dark">
     <% genres.each do |genre| %>
       <p class="m-3">
-        <%= link_to genre.name, search_path(name: genre.name, word: genre.id, model:"genre", method: "perfect"), class: 'text-dark' %>
+        <%= link_to genre.name, search_path(name: genre.name, word: genre.id, model: "genre", method: "perfect"), class: 'text-dark' %>
       </p>
     <% end %>
   </div>
