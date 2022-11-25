@@ -15,10 +15,13 @@
           <% sum_of_price= 0 %>
           <% @cart_items.each do |cart_item| %>
           <tr>
-            <td><%= cart_item.item.name %></td>
-            <td><%= (cart_item.item.price*1.10).to_i %></td>
-            <td><%= cart_item.amount %></td>
             <td>
+              <%= image_tag cart_item.item.image, size: '80x60' %>
+              <%= cart_item.item.name %>
+            </td>
+            <td class="align-middle"><%= (cart_item.item.price*1.10).to_i %></td>
+            <td class="align-middle"><%= cart_item.amount %></td>
+            <td class="align-middle">
               <% subtotal = ((cart_item.item.price*cart_item.amount)*1.10).to_i %>
               <%= subtotal %>
             <% sum_of_price += subtotal %>
