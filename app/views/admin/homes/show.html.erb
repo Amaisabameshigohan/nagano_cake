@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
 
-<h4 class="col-auto bg-light mt-4">　<% name %>さんの注文履歴一覧</h4>
+<h4 class="col-auto mt-4">　<% name %>さんの注文履歴一覧</h4>
 
       <table class="table table-bordered mt-2">
         <thead>
@@ -20,7 +20,7 @@
                 <% end %>
             </td>
             <td><%= order.customer.last_name + order.customer.first_name %></td>
-            
+
             <!----------総個数を注文詳細から取得---------->
             <% @sum = 0 %>
             <% order.order_details.each do |order_detail| %>
@@ -28,7 +28,7 @@
             <% end %>
             <td><%= @sum %></td>
             <!-------------------------------------------->
-            
+
             <td><%= order.status %></td>
           </tr>
           <% end %>
