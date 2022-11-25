@@ -8,7 +8,8 @@ class Admin::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      if @order.status == "payment_confirmation"
+      # 注文ステータスが入金確認になったら製作ステータス全て製作待ちに
+      if @order.status == "入金確認"
         @order.order_details.update_all(making_status: :production_pending)
       end
       redirect_to request.referer
