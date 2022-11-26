@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row mt-5 pb-5">
+    <div class="col-2">
+      <%= render 'genre', genres: @genres %>
+    </div>
+    <div class="col-4 text-center"><%= image_tag @item.image, size: '270x170' %></div>
+    <div class="col-6">
+      <h3 class="m-2"><%= @item.name %></h3>
+      <h5 class="m-2" style="height:6rem;"><%= @item.introduction %></h5>
+      <div class="mb-4">
+        <h4 class="d-inline">¥<%= (@item.price * 1.1).floor %></h4>
+        <div class="d-inline">(税込)</div>
+      </div>
+      <div class="d-flex justify-content-around">
+        <%= form_with model: @cart_item,url: cart_items_path, method: :post do |f| %>
+          <%= f.select :amount, *[1..10], style: "width:5rem;", placeholder: '個数選択' %>
+          <%= f.hidden_field :item_id, :value => @item.id %>
+          <%= f.submit 'カートに入れる', class: "btn btn-success" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

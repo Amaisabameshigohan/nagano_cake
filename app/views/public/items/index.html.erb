@@ -1,0 +1,19 @@
+<div class="container m-5 mx-auto">
+  <div class="row">
+    <div class="col-2">
+      <%= render 'genre', genres: @genres %>
+    </div>
+    <div class="col-10">
+      <div class="d-flex flex-row">
+        <h3>商品一覧</h3>
+        <p class="d-flex align-items-end m-2">(全<%= @items.count %>件)</p>
+      </div>
+      <%= render 'index', items: @items %>
+      <div class="row">
+        <div class="col-11 d-flex justify-content-center">
+          <%= paginate @items, theme: 'bootstrap-5' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
